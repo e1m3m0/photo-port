@@ -5,20 +5,24 @@ import ContactForm from "..";
 
 afterEach(cleanup);
 
-describe('Contact is rendering', () => {
-
+describe('Contact component', () => {
   it('renders', () => {
-    render(<ContactForm />)
+    render(<ContactForm />);
   });
 
-  it('renders testid', () => {
-    const { getByTestId } = render (<ContactForm />)
-    expect(getByTestId('Contact me')).toHaveTextContent('Contact me')
-  });
+  it('snapshot', () => {
+    const { asFragment } = render(<ContactForm />)
+    expect(asFragment()).toMatchSnapshot()
+  })
+})
 
-  it('renders button', () => {
-    const { getByTestId } = render (<ContactForm />)
-    expect(getByTestId('Submit')).toHaveTextContent('Submit')
-  });
 
+it('renders h1', () => {
+  const { getByTestId } = render(<ContactForm />)
+  expect(getByTestId('h1tag')).toHaveTextContent('Contact me')
+})
+
+it('renders button', () => {
+  const { getByTestId } = render(<ContactForm />)
+  expect(getByTestId('button')).toHaveTextContent('Submit')
 })
